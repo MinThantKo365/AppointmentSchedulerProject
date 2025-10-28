@@ -37,12 +37,12 @@
                         Appointment Scheduler Project
                     </div>
                     <div class="col-lg-12 text-light h4 fw-bold mb-0">
-                        Login
+                        Forget Password
                     </div>
 
                     <div class="col-lg-12 login-form">
                         <div class="col-lg-12 login-form">
-                            <form action="{{ route('login_post') }}" method="post">
+                            <form action="{{ route('forgotPwdPost') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label class="form-control-label">EMAIL</label>
@@ -53,28 +53,13 @@
                                         </small>
                                     @enderror
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">PASSWORD</label>
-                                    <input type="password" class="form-control mb-0" name="password">
-                                    @error('password')
-                                        <small class="p-0 mb-0 text-danger">
-                                            {{ $message }}
-                                        </small>
-                                    @enderror
-                                </div>
 
                                 <div class="col-lg-12 loginbttm">
-                                    <div class="col-lg-6 login-btm login-text">
-                                        <a href="{{ route('f_pwd_view') }}">Forget password</a>
-                                    </div>
                                     <div class="col-lg-12 login-button d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-outline-primary mx-2">LOGIN</button>
+                                        <button type="submit" class="btn btn-outline-primary mx-2">SEND</button>
                                         <button type="reset" class="btn btn-outline-secondary mx-2">CANCEL</button>
                                     </div>
-                                    <div class="col-lg-12 login-button d-flex justify-content-center mb-0">
-                                        <p class="text-light me-1">Don't have account?</p>
-                                        <a href="/register?">Create One</a>
-                                    </div>
+                                  
                                 </div>
                             </form>
                         </div>

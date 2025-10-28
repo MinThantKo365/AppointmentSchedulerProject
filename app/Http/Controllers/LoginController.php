@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChangePwdRequest;
-use App\Http\Requests\LoginRequest;
+use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\RegisterRequest;
+use App\Mail\forgetPasswordMail;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ChangePwdRequest;
+use App\Http\Requests\ResetPasswordRequest;
+
 
 
 class LoginController extends Controller
@@ -95,5 +102,65 @@ class LoginController extends Controller
     public function unauthorizedAccess()
     {
         return view('error.error-401');
+    }
+
+    public function forgetPWd()
+    {
+        return view('app.forget_pwd');
+    }
+
+    public function forgotPwdPost(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user && $user->account_status == 'suspended') {
+            return back()->with('error', 'Your account has been suspended!');
+        } else {
+            $token = Str::random(64);
+
+            DB::table('password_resets')->insert([
+                'email'      => $request->email,
+                'token'      => $token,
+                'created_at' => Carbon::now(),
+            ]);
+            $email = $request->email;
+
+            Mail::to($email)
+                ->queue(new forgetPasswordMail($token, $email));
+
+            return back()->with('success', 'We have e-mailed your password reset link!');
+        }
+
+        
+    }
+
+    public function displayResetPasswordForm($token, $email)
+    {
+        return view('app.reset_password', ['token' => $token, 'email' => $email]);
+    }
+
+    public function submitResetPassword(ResetPasswordRequest $request)
+    {
+
+        $updatePassword = DB::table('password_resets')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token,
+            ])
+            ->first();
+
+        if (! $updatePassword) {
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
+
+        User::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+        DB::table('password_resets')->where(['email' => $request->email])->delete();
+
+        return redirect()->to(route('login_view'))->with('success', 'Your password has been changed!');
     }
 }

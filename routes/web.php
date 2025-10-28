@@ -16,6 +16,12 @@ Route::middleware(['guest'])->group(function () {
     // register
     Route::get('/register', [LoginController::class, 'registerView'])->name('register_view');
     Route::post('/register', [LoginController::class, 'registerPost'])->name('register_post');
+
+    // Forget Password fortgetPWd
+    Route::get('/forget-password', [LoginController::class, 'forgetPWd'])->name('f_pwd_view');
+    Route::post('/forgot-password-page', [LoginController::class, 'forgotPwdPost'])->name('forgotPwdPost');
+    Route::get('/reset-password/{token}/email={email}', [LoginController::class, 'displayResetPasswordForm'])->name('resetGet');
+    Route::post('/reset-password', [LoginController::class, 'submitResetPassword'])->name('resetPost');
 });
 
 
