@@ -139,3 +139,19 @@ input[type=password] {
     width: 150px;
     height: 165px;
 }
+
+.nav-logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+#nav-a{
+    color: #ffffff;
+    font-weight: 500;
+}
+
+#nav-a:hover{
+    color: #0DB8DE;
+}
+

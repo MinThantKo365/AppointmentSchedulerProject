@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class ChangePwdRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,8 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'               => 'required|max:18',
-            'email'              => 'required|email|unique:users',
-            'password'           => 'required|min:6',
+            'cur_password' => 'required|min:6',
+            'password' => 'required|min:6',
             'password_confirmation' => 'required|min:6|same:password',
         ];
     }
@@ -34,6 +33,7 @@ class RegisterRequest extends FormRequest
         return [
             'password_confirmation.same' => 'Password and confirm password are not match',
             'password_confirmation.required' => 'The confirm password field is required',
+             'cur_password.required' => 'The current password field is required',
         ];
     }
 }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystic Nature Admin</title>
-     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
+    <title>Appointment Scheduler Project</title>
+     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo2.png') }}">
 <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     {{-- Css link --}}
