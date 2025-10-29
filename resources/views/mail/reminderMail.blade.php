@@ -13,20 +13,13 @@
     <img src="/images/logo.png" alt="Mystic Nature Logo" style="max-width: 150px; display: block; margin: 0 auto;">
   </div> --}}
 
-  <h1 style="font-size: 26px; color: #ffffff; margin-bottom: 20px;">Reset Your Password</h1>
+  <h1 style="font-size: 26px; color: #ffffff; margin-bottom: 20px;">Reminder Mail</h1>
 
   <p style="font-size: 16px; line-height: 1.6; color: #c7d5e0; margin-bottom: 30px;">
-    We received a request to reset your password. Click the button below to set a new password:
+    You have the appointment in next 60 minutes(1 HOURS).
   </p>
+  <p>{{ $applicant->title }}</p>
 
-  <a href="{{ route('resetGet', ['token' => $token, 'email' => $email]) }}"
-     style="background-color: #66c0f4; color: #1b2838; padding: 14px 28px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block;">
-    Reset Password
-  </a>
-
-  <p style="font-size: 14px; line-height: 1.6; color: #a6b2c4; margin-top: 30px;">
-    If you did not request a password reset, please ignore this email.
-  </p>
 
   <div style="border-top: 1px solid #2a475e; margin-top: 40px; padding-top: 20px; font-size: 12px; color: #708090;">
     &copy; {{ date('Y') }} Appointments Scheduler Project. All rights reserved.

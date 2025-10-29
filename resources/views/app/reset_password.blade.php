@@ -16,7 +16,7 @@
                         Appointment Scheduler Project
                     </div>
                     <div class="col-lg-12 text-light h4 fw-bold mb-0">
-                        Login
+                        Reset Password
                     </div>
 
                     <div class="col-lg-12 login-form">

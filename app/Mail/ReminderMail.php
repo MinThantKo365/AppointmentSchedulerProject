@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Appointments;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,49 +10,36 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class forgetPasswordMail extends Mailable 
+class ReminderMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $token;
+    public $appointment;
     public $email;
-    /**
-     * Create a new message instance.
-     */
-    public function __construct($token, $email)
+
+    public function __construct($appointment)
     {
-        
-        $this->token = $token;
-        $this->email = $email;
+        $this->appointment = $appointment;
+        // $this->email = $email;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Forget Password Mail',
+            subject: 'Reminder Mail',
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'mail.forgetPasswordMail',
+            view: 'mail.reminderMail',
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];
     }
 }
+

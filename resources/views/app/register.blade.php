@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-lg-12 loginbttm mb-2">
-                                    <div class="col-lg-12 login-button d-flex justify-content-center mb-2">
+                                    <div class="col-lg-12 login-button d-flex justify-content-center mb-3">
                                         <button type="submit" class="btn btn-outline-primary mx-2">SIGN UP</button>
                                         <button type="reset" class="btn btn-outline-secondary mx-2">CANCEL</button>
                                     </div>
