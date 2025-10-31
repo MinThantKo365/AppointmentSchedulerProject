@@ -20,7 +20,7 @@ class ReminderMail extends Mailable implements ShouldQueue
     public function __construct($appointment)
     {
         $this->appointment = $appointment;
-        // $this->email = $email;
+
     }
 
     public function envelope(): Envelope

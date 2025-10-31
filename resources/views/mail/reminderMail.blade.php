@@ -18,7 +18,7 @@
   <p style="font-size: 16px; line-height: 1.6; color: #c7d5e0; margin-bottom: 30px;">
     You have the appointment in next 60 minutes(1 HOURS).
   </p>
-  <p>{{ $applicant->title }}</p>
+ <p><strong>Title:</strong> {{ $appointment->title ?? 'No title' }}</p>
 
 
   <div style="border-top: 1px solid #2a475e; margin-top: 40px; padding-top: 20px; font-size: 12px; color: #708090;">
